@@ -1,0 +1,72 @@
+{extend name="$BASE_POPUP_FORM" /}
+{block name="body"}
+
+<div class="box-content">
+    <input type="hidden" id="id" name="id" /> 
+    <div class="control-group">
+        <label class="control-label">初始价格</label>
+        <div class="controls">
+            <input type="number" name="init_amount" class="form-control required" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">每单递增价格</label>
+        <div class="controls">
+            <input type="text" name="multi" class="form-control required" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">每把钥匙时间递增</label>
+        <div class="controls">
+            <input type="text" name="time_multi" class="form-control required" />
+            <span class="tips">秒</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">用户限购金额</label>
+        <div class="controls">
+            <input type="number" name="limit" class="form-control required" value="0" />
+            <span class="tips">0为不限购</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">解除限购额度</label>
+        <div class="controls">
+            <input type="number" name="unfreeze" class="form-control required" value="0" />
+            <span class="tips">0为不解除</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">邀请奖励规则</label>
+        <div class="controls">
+            <input type="text" name="invite_rate" class="form-control required" placeholder="7,3" />
+            <span class='tips'>% 多级奖励请使用【,】分割,例如一级,二级...</span> 
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+
+</script>
+{/block}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

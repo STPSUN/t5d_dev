@@ -1,0 +1,30 @@
+{extend name="$BASE_POPUP_FORM" /}
+{block name="body"}
+
+<div class="box-content">
+    <input type="hidden" id="id" name="id" value="{$id}"/>
+    <div class="control-row">
+
+        <div class="control-group">
+            <label class="control-label">
+                代理等级</label>
+            <div class="controls">
+                <select name="level" id="level" class="form-control" style="width:160px">
+                    <option value="1">1级</option>
+                    <option value="2">2级</option>
+                    <option value="3">3级</option>
+                    <option value="4">4级</option>
+                    <option value="5">5级</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+</div>
+{/block}
+
+{block name="script"}
+<script type="text/javascript">
+
+</script>
+{/block}

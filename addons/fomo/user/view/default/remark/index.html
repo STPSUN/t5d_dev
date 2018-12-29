@@ -1,0 +1,94 @@
+{extend name="$BASE_LIST" /}
+{block name="body"}
+<div class="right-main">
+    <div class="page_nav" id="js_page_nav"><span class="page_title">{$page_nav}</span></div>
+    <div id="js_main_header" class="ui-form main_header">
+        <span class="right">       
+            <button type="button" id="js_addBtn" class="btn btn-primary"><i class="icon fa fa-plus"></i> 添加配置</button>
+        </span>
+    </div>
+    <table id="grid-table">
+        <thead>
+        <tr>
+            <th data-options="field:'title',width:160, align:'center'">标题</th>
+            <th data-options="field:'type',width:160, align:'center',formatter:formatType">类型</th>
+            <th data-options="field:'content',width:360, align:'center'">说明内容</th>
+            <th data-options="field:'update_time',width:140, align:'center'">更新时间</th>
+            <th data-options="field:'_oper',width:140,halign:'center',formatter: formatOper">操作</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+{/block}
+{block name="script"}
+<script type="text/javascript">
+    $(function () {
+        $('#grid-table').datagrid({
+            url: getURL('loadList'),
+            method: "GET",
+            height: getGridHeight(),
+            rownumbers: true,
+            singleSelect: true,
+            remoteSort: false,
+            multiSort: true,
+            emptyMsg: '<span>无相关数据</span>',
+            pagination: true,
+            pageSize: 20,
+        });
+        //设置分页控件 
+        $('#grid-table').datagrid('getPager').pagination({
+            pageSize: 20, //每页显示的记录条数，默认为10 
+            pageList: [20, 30, 50]
+        });
+    });
+    
+    function formatType(value,row,index){
+        var text = '空投说明';
+        if(value == 1){
+            text = '战队说明'
+        }else if(value == 2){
+            text = '游戏说明'
+        }
+        return text;
+    }
+
+    function formatOper(value, row, index) {
+        var html = '<span class="grid-operation">';
+        html += '<button type="button" onclick="edit(' + row['id'] + ')" class="btn btn-xs btn-default edit-btn"><i class="icon wb-edit"></i>编辑</button>';
+        html += '<button type="button" onclick="del(' + row['id'] + ')" class="btn btn-xs btn-default del-btn"><i class="icon wb-close"></i>删除</button>';
+        html += '</span>';
+        return html;
+    }
+    
+    function edit(id) {
+        var url = getURL('edit', 'id=' + id);
+        openBarWin('编辑', 980, 600, url, function () {
+            reload();
+        }, ['确定','取消']);
+    }
+    
+    $("#js_addBtn").click(function () {
+        var url = getURL('edit');
+        openBarWin('添加', 980, 600, url, function () {
+            reload();
+        });
+    });
+
+    function del(id) {
+        confirm("确认要删除吗？", function () {
+            var url = getURL('del');
+            $.getJSON(url, {id: id}, function (json) {
+                if (json.success)
+                    reload();
+                else
+                    alert(json.message);
+            });
+        });
+    }
+
+    function reload() {
+        $('#grid-table').datagrid('reload');
+    }
+</script>
+{/block}

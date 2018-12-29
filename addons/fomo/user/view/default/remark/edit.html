@@ -1,0 +1,64 @@
+{extend name="$BASE_POPUP_FORM" /}
+{block name="body"}
+<style>
+    .edui-editor, .edui-editor-iframeholder {
+        width: 790px !important;
+    }
+</style>
+<div class="box-content">
+    <input type="hidden" id="id" name="id" /> 
+    <div class="control-group">
+        <label class="control-label">标题</label>
+        <div class="controls">
+            <input type="text" name="title" class="form-control required" style="width:300px" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">类型</label>
+        <div class="controls">
+            <select name="type" id="type" style="width:160px" class="form-control">
+                <option value="0">空投说明</option>
+                <option value="1">战队说明</option>
+                <option value="2">游戏说明</option>
+                <option value="3">令牌说明</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">说明</label>
+        <div class="controls">
+            <textarea id="content" name="content"></textarea>
+            {:hook('editor', array('height'=>'','id'=>"$id",'name'=>'content'))}
+        </div>
+    </div>
+    
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+    function onLoadDataSuccess(data) {
+        if (typeof (onLoadSuccess) !== "undefined")
+            onLoadSuccess();
+    }  
+</script>
+{/block}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

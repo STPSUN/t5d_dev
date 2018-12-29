@@ -1,0 +1,116 @@
+{extend name="$BASE_POPUP_FORM" /}
+{block name="body"}
+  
+<div class="box-content">
+    <input type="hidden" id="id" name="id" />  
+    <div class="control-row col-2">
+        <div class="control-group">
+            <label class="control-label">
+                名称</label>
+            <div class="controls">
+                <input type="text" name="name" id="name" class="form-control required" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                适用规则</label>
+            <div class="controls">
+                <select name="rule_id" id="rule_id" class="form-control" style="width:160px">
+                    {volist name="rules" id="rule"}
+                    <option value="{$rule.id}">{$rule.title}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                时长</label>
+            <div class="controls">
+                <input type="number" name="hour" id="hour" class="form-control required" /> 
+                <span class="tips">小时</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">
+                胜利者比率</label>
+            <div class="controls">
+                <input type="number" name="winner_rate" id="winner_rate" class="form-control required" />                       
+                <span class="tips">%</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">
+                战队比率</label>
+            <div class="controls">
+                <input type="number" name="team_rate" id="team_rate" class="form-control required" />
+                <span class="tips">%</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                基金比率</label>
+            <div class="controls">
+                <input type="number" name="fund_rate" id="fund_rate" class="form-control required" />
+                <span class="tips">%</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                币种</label>
+            <div class="controls">
+                <select name="coin_id" id="coin_id" class="required form-control">                
+                    {volist name="coin_list" id="vo"}
+                    <option value="{$vo.id}">{$vo.coin_name}</option>
+                    {/volist}
+                </select> 
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">
+                是否指定赢家</label>
+            <div class="controls">
+                <select name="is_set_winner" id="is_set_winner" class="form-control" style="width:160px">
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                选择指定赢家</label>
+            <div class="controls">
+                <input id="winner_user_id" name="winner_user_id" data-ui="combosearch" data-options="{valueField:'id',textField:'username',showList:true,matchFields:['username','phone'],data:user_data,searchWin:openSearchWin}" class="form-control"/>   
+            </div>
+        </div>   
+        <div class="control-group">
+            <label class="control-label">
+                指定获胜战队</label>
+            <div class="controls">
+                <select name="winner_team_id" id="winner_team_id" class="form-control" style="width:160px">
+                    <option value="0">不指定</option>
+                    {volist name="teams" id="team"}
+                    <option value="{$team.id}">{$team.name}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+    </div>
+
+</div>
+{/block}
+
+{block name="script"}
+<script type="text/javascript">
+    var user_data ={$user_list};
+    function openSearchWin(){
+        // var url = getURL('member/select_user','','member');
+        // openBarWinParent('选择用户', 500, 600, url, function (data) {
+        //     $("#winner_user_id").setValue(data);
+        // }, ['选定', '取消']);
+    }
+
+</script>
+{/block}
