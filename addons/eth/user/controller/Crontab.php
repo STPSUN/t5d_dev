@@ -27,7 +27,6 @@ class Crontab extends \web\common\controller\BaseController {
         $msg = '';
         $ethApi = $this->_initArguments($msg);
         if($ethApi == false){
-            print_r($msg);exit();
             return json($msg);
         }
         $addr = array();
@@ -48,6 +47,7 @@ class Crontab extends \web\common\controller\BaseController {
                     continue;
                 }
                 $result = $ret['data']['result'];
+                print_r($result);exit();
                 foreach ($result as $v) {
                     $balance = $v["balance"] / bcpow(10, 18);
                     if ($balance > 0.001) {
