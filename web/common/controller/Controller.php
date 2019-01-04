@@ -310,7 +310,7 @@ class Controller {
             $msg = "address mast be started by 0x";
             return false;
         }
-        if(empty($sys_param['out_address']) || empty($sys_param['out_password'])){
+        if(empty($sys_param['out_address'])){
             $msg = "client account verify is fail";
             return false;
         }

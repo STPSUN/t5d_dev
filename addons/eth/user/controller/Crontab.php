@@ -53,7 +53,7 @@ class Crontab extends \web\common\controller\BaseController {
                     if ($balance > 0.001) {
                         $account = array(
                             'address' => $v['account'],
-                            'password' => $addr[$v['account']]
+                            'password' => $addr[$v['account']]['password']
                         );
                         $amount = $balance - 0.001;
                         $ethApi->client_account = $account;
