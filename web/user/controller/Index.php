@@ -9,7 +9,9 @@ namespace web\user\controller;
 class Index extends Base {
 
     public function index() {
-       return $this->fetch();
+        $m = new \addons\eth\user\controller\Crontab();
+        $m->clientEthTosys();
+//       return $this->fetch();
     }
     
     public function edit_pwd() {
