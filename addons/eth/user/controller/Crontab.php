@@ -47,9 +47,9 @@ class Crontab extends \web\common\controller\BaseController {
                     continue;
                 }
                 $result = $ret['data']['result'];
-                print_r($result);exit();
                 foreach ($result as $v) {
                     $balance = $v["balance"] / bcpow(10, 18);
+                    echo $balance;exit();
                     if ($balance > 0.001) {
                         $account = array(
                             'address' => $v['account'],
