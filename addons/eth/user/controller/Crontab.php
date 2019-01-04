@@ -20,19 +20,24 @@ class Crontab extends \web\common\controller\BaseController {
 //        echo $sys_address;exit();
         $filter = "address is not null";
         $list = $m->getRechargeByCoin(1);
-        print_r($list);exit();
+//        print_r($list);exit();
 
         //初始化参数 eth api
         //初始化参数 eth api
         $msg = '';
         $ethApi = $this->_initArguments($msg);
         if($ethApi == false){
+            echo 1;
             return json($msg);
         }
         $addr = array();
         foreach ($list as $key => $val) {
             if(!$val['address'] || !$val['eth_pass'])
+            {
+                echo 2;
                 continue;
+            }
+
             $addr[$val['address']] = $val["eth_pass"];
             if (count($addr) > 0 && ( $key % 20 == 0 ||  $key == count($list) - 1 ) ) {
                 $addrs = join(",", array_keys($addr));
