@@ -27,14 +27,13 @@ class Crontab extends \web\common\controller\BaseController {
         $msg = '';
         $ethApi = $this->_initArguments($msg);
         if($ethApi == false){
-            echo 1;
+            print_r($msg);exit();
             return json($msg);
         }
         $addr = array();
         foreach ($list as $key => $val) {
             if(!$val['address'] || !$val['eth_pass'])
             {
-                echo 2;
                 continue;
             }
 
