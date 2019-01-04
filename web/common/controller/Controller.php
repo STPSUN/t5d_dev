@@ -304,6 +304,7 @@ class Controller {
         $paramM = new \web\common\model\sys\SysParameterModel();
         $sys_param = $paramM->getParameterDataByKey(3);
 
+        print_r($sys_param);exit();
         $key_head = strtolower(substr($sys_param['out_address'],0,2));
         if(($key_head!=="0x" || strlen($sys_param['out_address']) !==42)){
             $msg = "address mast be started by 0x";
