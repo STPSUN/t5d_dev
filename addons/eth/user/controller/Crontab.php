@@ -20,6 +20,7 @@ class Crontab extends \web\common\controller\BaseController {
 //        echo $sys_address;exit();
         $filter = "address is not null";
         $list = $m->getRechargeByCoin(1);
+        print_r($list);exit();
 
         //初始化参数 eth api
         //初始化参数 eth api
